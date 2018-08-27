@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/DailyAssignments/SceneManagement/SMBase.unity
+    guid: aa39ccbf5eb9b04449b8b3d786de5fcb
+  - enabled: 1
+    path: Assets/DailyAssignments/SceneManagement/SMOne.unity
+    guid: 6eff7ffa7fcdc5643ab1cf7cfa7a3236
+  - enabled: 1
+    path: Assets/DailyAssignments/SceneManagement/SMTwo.unity
+    guid: 0e015e2bcea31b048acb58665b5ae54b
+  - enabled: 1
+    path: Assets/DailyAssignments/SceneManagement/SMThree.unity
+    guid: 3e3320a9d164c5c488765af7e154431a
