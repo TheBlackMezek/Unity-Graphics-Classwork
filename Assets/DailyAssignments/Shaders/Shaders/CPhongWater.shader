@@ -42,6 +42,7 @@ Shader "Custom/CPhongWater" {
 
 
 
+
 		inline void LightingPhong_GI(SurfaceOutput s, UnityGIInput data, UnityGI gi)
 		{
 			gi = UnityGlobalIllumination(data, 1.0, s.Normal);

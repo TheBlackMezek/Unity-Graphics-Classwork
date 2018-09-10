@@ -2,6 +2,7 @@
 
 Shader "Custom/SimpleWater" {
 	Properties {
+		_Tess("Tessellation", Range(1,34)) = 1
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_NormalMap("Normal", 2D) = "white" {}
@@ -22,7 +23,7 @@ Shader "Custom/SimpleWater" {
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf BlinnPhong fullforwardshadows vertex:vert
+		#pragma surface surf BlinnPhong fullforwardshadows vertex:vert tessellate:tessFixed
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
@@ -45,6 +46,14 @@ Shader "Custom/SimpleWater" {
 		sampler2D _NoiseTex;
 		float4 _TexMoveSpeed;
 		float4 _TexMoveSpeed2;
+
+
+
+		uniform float _Tess;
+		float4 tessFixed()
+		{
+			return _Tess;
+		}
 
 		void vert(inout appdata_full v)
 		{
