@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScrollImage : MonoBehaviour {
 
     public float scrollRate;
+    public Vector2 scrollDir;
 
     private MeshRenderer mr;
 
@@ -17,7 +18,7 @@ public class ScrollImage : MonoBehaviour {
 
     private void Update()
     {
-        mr.material.mainTextureOffset += Vector2.right * scrollRate * Time.deltaTime;
+        mr.material.mainTextureOffset += scrollDir * scrollRate * Time.deltaTime;
     }
 
 }
