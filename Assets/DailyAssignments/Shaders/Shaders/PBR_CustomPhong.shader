@@ -1,6 +1,6 @@
 ﻿
 
-Shader "Custom/Base_CustomPhong" {
+Shader "Custom/PBR_CustomPhong" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo 1 (RGB)", 2D) = "white" {}
@@ -45,12 +45,17 @@ Shader "Custom/Base_CustomPhong" {
 
 		inline fixed4 LightingPhong(SurfaceOutput s, half3 viewDir, UnityGI gi)
 		{
+			const float PI = 3.14159265;
+
 			UnityLight light = gi.light;
 			float nl = max(0.0, dot(s.Normal, light.dir)); //Angle that the light hits the normal
 			float3 diffuseTerm = nl * s.Albedo.rgb * light.color; //Blending the color of the light and our albedo based on nl
+			
+			float norm = (_Shininess + 2) / (2 * PI);
+			
 			float3 reflectionDirection = reflect(-light.dir, s.Normal); //Lights always bounce opposite of what they hit
 			float3 specularDot = max(0.0, dot(viewDir, reflectionDirection)); //How much specular based on reflection
-			float3 specular = pow(specularDot, _Shininess); //Increase specular
+			float3 specular = norm * pow(specularDot, _Shininess); //Increase specular
 			float3 specularTerm = specular * _SpecColor.rgb * light.color.rgb; //Combining specular color with light color
 			float3 finalColor = diffuseTerm.rgb + specularTerm.rgb; //Specular is always additive color
 			
